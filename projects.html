@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Page - Our Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for fade-in elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .member-projects {
+            padding: 2rem;
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            width: 93%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: translateY(20px);
+        }
+
+        #h2 {
+            text-align: center;
+        }
+
+        .member-projects.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project {
+            margin: 10px 0;
+        }
+
+        .collapsible {
+            display: block;
+            background-color: #005f73;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            text-align: left;
+            font-size: 15px;
+            width: 100%;
+            outline: none;
+        }
+
+        .collapsible:hover {
+            background-color: blueviolet;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .member-projects {
+                margin: 10px;
+                padding: 5px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create an IntersectionObserver to detect when elements come into view
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show'); // Add 'show' class when in view
+                        observer.unobserve(entry.target); // Unobserve after it has been shown
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjusts how much of the element needs to be in view (0.1 means 10%)
+            });
+
+            // Apply the observer to all elements with the 'fade-in' class
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Typewriter effect function
+            function typeWriter(element, text, delay, loop) {
+                let index = 0;
+                function type() {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, delay); // Reduced delay for faster typing
+                    } else {
+                        setTimeout(() => erase(), delay * 2); // Pause before erasing
+                    }
+                }
+
+                function erase() {
+                    // Clear the text instantly
+                    element.textContent = '';
+                    index = 0; // Reset index
+                    setTimeout(() => type(), delay * 2); // Pause before typing again
+                }
+
+                type();
+            }
+
+            // Initialize typewriter effect
+            const taglineElement = document.querySelector('.tagline');
+            const taglineText = "Innovating solutions for a smarter tomorrow through teamwork and technology.";
+            typeWriter(taglineElement, taglineText, 50, true); // Set a faster delay (50 ms);
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="images/T_logo.png" alt="Tech Savants Logo" class="logo">
+            </div>
+            <div class="header-center">
+                <h1 class="gradient-text">Tech Savants</h1>
+                <p class="tagline" style="font-size: 0.9rem; color: #ecf0f1; margin-top: 5px;"></p>
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="Team.html" class="nav-link">Team</a></li>
+                        <li><a href="skills.html" class="nav-link">Skills & Expertise</a></li>
+                        <li><a href="projects.html" class="nav-link">Projects</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="projects">
+            <section id="h2">
+                <h2>Projects Overview</h2>
+            </section>
+            <!-- Saumya's Projects -->
+            <div class="member-projects" id="saumya-projects">
+                <h3>Saumya Joshi</h3>
+                <div class="project">
+                    <button class="collapsible">1. Online Novel Store</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> January 2021 – April 2021 (4 months)</p>
+                        <p><strong>Overview:</strong> Developed an e-commerce platform enabling users to purchase
+                            and
+                            rent novels seamlessly.</p>
+                        <p><strong>Key Responsibilities:</strong> Front-end Development, Back-end Management,
+                            Feature
+                            Implementation.</p>
+                        <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript, SQL, PHP, MySQL.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">2. Real-Time Chat Application</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> July 2021 – December 2021 (6 months)</p>
+                        <p><strong>Overview:</strong> Designed and developed a real-time chat application focusing
+                            on
+                            user-friendly interfaces.</p>
+                        <p><strong>Key Responsibilities:</strong> Media Sharing Integration, Room Management,
+                            Anti-abuse
+                            Mechanism.</p>
+                        <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript, Node.js, Socket.io, MySQL.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">3. Business Decision Using Data Analytics</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> January 2022 – April 2022 (4 months)</p>
+                        <p><strong>Overview:</strong> Analyzed a dataset from Kaggle to evaluate the effectiveness
+                            of
+                            marketing campaigns.</p>
+                        <p><strong>Key Responsibilities:</strong> Metrics Evaluation, Data Analytics Techniques,
+                            Collaboration.</p>
+                        <p><strong>Technologies Used:</strong> Microsoft Visual C++ Redistributable, Windows SDK.
+                        </p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">4. Flex Flow Fitness</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> September 2023 – December 2023 (4 months)</p>
+                        <p><strong>Overview:</strong> Developed a web application focused on promoting healthier
+                            lifestyles through yoga and fitness.</p>
+                        <p><strong>Key Responsibilities:</strong> Web Application Development, Content Creation,
+                            User
+                            Authentication.</p>
+                        <p><strong>Technologies Used:</strong> HTML, CSS, Bootstrap, JavaScript, jQuery, Git.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kavya's Projects -->
+            <div class="member-projects" id="kavya-projects">
+                <h3>Kavya Gali</h3>
+                <div class="project">
+                    <button class="collapsible">1. Hogwarts University</button>
+                    <div class="content">
+                        <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript</p>
+                        <p><strong>Description:</strong> Created a web application themed around Hogwarts
+                            University.
+                        </p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">2. University Admission Prediction Using Machine Learning</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> October 11, 2021 – November 9, 2021</p>
+                        <p><strong>Description:</strong> Predicted admission scores using various machine learning
+                            models.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">3. Event Tracker</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> January 2, 2022 – June 10, 2022</p>
+                        <p><strong>Description:</strong> Centralized campus events management using Django.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">4. Car Parking System</button>
+                    <div class="content">
+                        <p><strong>Technologies Used:</strong> C#</p>
+                        <p><strong>Description:</strong> Developed a system for optimizing parking space management.
+                        </p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">5. Flight Tickets Booking</button>
+                    <div class="content">
+                        <p><strong>Technologies Used:</strong> C#, Data Structures, Patterns</p>
+                        <p><strong>Description:</strong> Created a flight ticket booking system using C#.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Glen's Projects -->
+            <div class="member-projects" id="glen-projects">
+                <h3>Glen Correia</h3>
+                <div class="project">
+                    <button class="collapsible">1. PCCP (Persuasive Cued Click Points Password)</button>
+                    <div class="content">
+                        <p><strong>Duration:</strong> January 2019 – March 2019</p>
+                        <p><strong>Description:</strong> Developed a graphical password system utilizing C# and
+                            Microsoft SQL.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Haolin's Projects -->
+            <div class="member-projects" id="haolin-projects">
+                <h3>Haolin Zhong</h3>
+                <div class="project">
+                    <button class="collapsible">1. Graphical Password Authentication</button>
+                    <div class="content">
+                        <p><strong>Technologies Used:</strong> Java, MySQL</p>
+                        <p><strong>Description:</strong> Implemented a unique graphical password system.</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <button class="collapsible">2. Smart Home System</button>
+                    <div class="content">
+                        <p><strong>Technologies Used:</strong> IoT, Python</p>
+                        <p><strong>Description:</strong> Developed a smart home system using IoT technology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2024 Tech Savants. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Collapsible functionality
+        var coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
+        // Fade-in effect for projects
+        const projects = document.querySelectorAll('.member-projects');
+        const observerOptions = {
+            root: null, // Use the viewport as the root
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing after fading in
+                }
+            });
+        }, observerOptions);
+
+        projects.forEach(project => {
+            observer.observe(project);
+        });
+    </script>
+</body>
+
+</html>

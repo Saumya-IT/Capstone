@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Home Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    /* Styling for fade-in elements */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    /* Class that will be added when element is in view */
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section {
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid red;
+    }
+
+    section.visible {
+      opacity: 1;
+    }
+
+    header nav a {
+      transition: color 0.3s ease;
+    }
+
+    header nav a:hover {
+      color: #007BFF;
+      /* Change color on hover */
+    }
+
+    #vision {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .vision-image {
+      flex: 1;
+      padding-left: 10px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+    }
+
+    .vision-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .vision-text {
+      flex: 2;
+      text-align: justify;
+      margin-top: 60px;
+    }
+
+    #pm {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+      background-color: darkgrey;
+    }
+
+    .pm-image {
+      flex: auto;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      max-width: auto;
+      max-height: auto;
+      border-radius: 10px;
+    }
+
+    .pm-text {
+      flex: 60;
+      text-align: justify;
+      margin-right: 50px;
+      margin-top: 50px;
+    }
+
+    #goals {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .goals-image {
+      flex: auto;
+      padding-left: 10px;
+      margin-top: 30px;
+      padding-bottom: 10px;
+      max-width: auto;
+      max-height: auto;
+      border-radius: 10px;
+    }
+
+    .goals-text {
+      flex: 20;
+      text-align: justify;
+    }
+
+    #impact {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+      background-color: darkgrey;
+    }
+
+    .impact-image {
+      flex: auto;
+      padding-left: 10px;
+      margin-top: 30px;
+      padding-bottom: 10px;
+      max-width: auto;
+      max-height: auto;
+      border-radius: 10px;
+    }
+
+    .impact-text {
+      flex: 60;
+      text-align: justify;
+      margin-right: 50px;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+    }
+
+    #pv {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .pv-image {
+      flex: auto;
+      padding-left: 10px;
+      margin-top: 60px;
+      padding-bottom: 10px;
+      max-width: auto;
+      max-height: auto;
+      border-radius: 10px;
+    }
+
+    .pv-text,
+    ol li {
+      flex: 20;
+      text-align: justify;
+    }
+
+    #CTA {
+      padding: 2rem;
+      background-color: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+      background-color: darkgrey;
+    }
+
+    .CTA-image {
+      flex: auto;
+      padding-left: 10px;
+      margin-top: 20px;
+      padding-bottom: 10px;
+      max-width: auto;
+      max-height: auto;
+      border-radius: 10px;
+    }
+
+    .CTA-text {
+      flex: 60;
+      text-align: justify;
+      margin-right: 50px;
+    }
+
+    @media (max-width: 768px) {
+
+      #vision,
+      #pm,
+      #goals,
+      #impact,
+      #pv,
+      #CTA {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .vision-image,
+      .pm-image,
+      .goals-image,
+      .impact-image,
+      .pv-image,
+      .CTA-image {
+        margin-top: 10px;
+        padding-left: 0;
+      }
+
+      .vision-text,
+      .pm-text,
+      .goals-text,
+      .impact-text,
+      .pv-text,
+      .CTA-text {
+        margin-top: 10px;
+        margin-right: 0;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Create an IntersectionObserver to detect when elements come into view
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show'); // Add 'show' class when in view
+            observer.unobserve(entry.target); // Unobserve after it has been shown
+          }
+        });
+      }, {
+        threshold: 0.1 // Adjusts how much of the element needs to be in view (0.1 means 10%)
+      });
+
+      // Apply the observer to all elements with the 'fade-in' class
+      document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+      });
+
+      // Typewriter effect function
+      function typeWriter(element, text, delay, loop) {
+        let index = 0;
+        function type() {
+          if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, delay); // Reduced delay for faster typing
+          } else {
+            setTimeout(() => erase(), delay * 2); // Pause before erasing
+          }
+        }
+
+        function erase() {
+          // Clear the text instantly
+          element.textContent = '';
+          index = 0; // Reset index
+          setTimeout(() => type(), delay * 2); // Pause before typing again
+        }
+
+        type();
+      }
+
+      // Initialize typewriter effect
+      const taglineElement = document.querySelector('.tagline');
+      const taglineText = "Innovating solutions for a smarter tomorrow through teamwork and technology.";
+      typeWriter(taglineElement, taglineText, 50, true); // Set a faster delay (50 ms)
+    });
+
+    // Get the current URL path
+    const currentLocation = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Loop through the links and add the 'active' class to the current link
+    navLinks.forEach(link => {
+      if (link.href.includes(currentLocation)) {
+        link.classList.add('active');
+      }
+    });
+
+  </script>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-left">
+        <img src="images/T_logo.png" alt="Tech Savants Logo" class="logo">
+      </div>
+      <div class="header-center">
+        <h1 class="gradient-text">Tech Savants</h1>
+        <p class="tagline" style="font-size: 0.9rem; color: #ecf0f1; margin-top: 5px;"></p>
+        <nav class="header-nav">
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="Team.html" class="nav-link">Team</a></li>
+            <li><a href="skills.html" class="nav-link">Skills & Expertise</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section id="vision">
+    <div class="vision-text">
+      <p>At Tech Savants, we envision a future where innovative technology and compassionate service converge to
+        create meaningful solutions for our communities. Our purpose is to leverage our collective skills in
+        programming, data analysis, and design to address pressing challenges and empower individuals to lead
+        healthier, more informed lives.</p>
+
+      <p>We are committed to fostering inclusivity and collaboration, ensuring that our projects are accessible to all
+        and reflective of diverse perspectives. Through our dedication to sustainability and innovation, we aim to
+        contribute to a brighter, more equitable future.</p>
+
+      <p>Together, let’s harness the transformative power of technology to bridge gaps, enhance lives, and inspire
+        positive change.</p>
+    </div>
+    <div class="vision-image">
+      <img src="images/vision.jpeg" alt="Vision Image" class="vision-img"> <!-- Replace with your image path -->
+    </div>
+    </div>
+
+  </section>
+
+  <section id="pm">
+    <div class="pm-image">
+      <img src="images/p&m.png" alt="Purpose and Motivation Image" class="p&m-img">
+    </div>
+    <div class="pm-text">
+      <p>At Tech Savants, our purpose is to leverage cutting-edge technology to solve real-world challenges,
+        enabling businesses and individuals to thrive in a digital-first world.
+        We are dedicated to delivering high-quality, scalable IT solutions that blend innovation with practicality.
+        Our team's diverse expertise in software development, data analytics, cloud infrastructure,
+        and user experience design allows us to approach projects with a holistic mindset,
+        ensuring that the solutions we create are not only functional but also intuitive and user-friendly.
+      </p>
+      <p>Each project we undertake is driven by a commitment to excellence, with a clear focus on understanding the
+        needs of our clients and tailoring our services accordingly.</p>
+    </div>
+  </section>
+
+  <section id="goals">
+    <div class="goals-image">
+      <img src="images/goals.jpeg" alt="Long-term Goals Image" class="goals-img">
+      <!-- Replace with your image path -->
+    </div>
+    <div class="goals-text">
+      <p>Our long-term goal at Tech Savants is to establish ourselves as a leading provider of innovative IT
+        solutions,
+        recognized for our ability to drive digital transformation across various industries.
+        We aim to build a reputation for delivering not only high-quality, user-centric software and systems but also
+        for fostering strong,
+        collaborative relationships with our clients and partners.</p>
+      <p>
+        Over time, we envision expanding our expertise across emerging technologies such as artificial intelligence,
+        blockchain,
+        and cloud-native development. Our goal is to be at the forefront of technological advancements,
+        enabling businesses to stay competitive in an increasingly digital landscape.</p>
+      <p>
+        We aspire to grow both as individual professionals and as a cohesive team,
+        continuously evolving our skills and adapting to new challenges.
+        As part of this, we are committed to nurturing a culture of learning and innovation,
+        where each member is encouraged to pursue growth opportunities, explore new technologies,
+        and develop creative solutions.</p>
+      <p>
+        Ultimately, Tech Savants aims to leave a lasting impact on the tech industry by delivering solutions that not
+        only
+        solve today’s problems but also anticipate and address future needs. By remaining agile, forward-thinking,
+        and committed to excellence, we strive to become a trusted name in IT consulting and development on a global
+        scale.</p>
+    </div>
+  </section>
+  <section id="impact">
+    <div class="impact-image">
+      <img src="images/impact.jpeg" alt="Long-term Goals Image" class="goals-img">
+      <!-- Replace with your image path -->
+    </div>
+    <div class="impact-text">
+      <p>
+        At Tech Savants, we recognize that technology is a driving force behind modern business transformation.
+        Our team is dedicated to leveraging tech solutions to optimize operations, enhance customer experiences, and
+        foster innovation.
+      </p>
+      <ol>
+        <li>
+          Efficiency through Automation: We implement automation to streamline workflows, reduce errors, and cut
+          costs.
+        </li>
+        <li>
+          Seamless Collaboration: By integrating cloud tools, we help businesses maintain effective communication and
+          teamwork, even remotely.
+        </li>
+        <li>
+          Data-Driven Decisions: We harness AI and data analytics to help businesses make informed, strategic
+          decisions.
+        </li>
+        <li>
+          Enhanced Customer Experience: Our team creates user-friendly digital platforms and personalized solutions to
+          improve customer engagement.
+        </li>
+        <li>
+          Innovation and Growth: By adopting cutting-edge technologies, we enable businesses to innovate, expand
+          globally, and stay competitive.
+        </li>
+        <li>
+          Sustainability: We focus on designing tech solutions that promote sustainability and reduce environmental
+          impact.
+        </li>
+      </ol>
+      <p>
+        At Tech Savants, our mission is to help businesses thrive by embracing technology, ensuring long-term success,
+        and
+        leading the way in digital transformation.
+      </p>
+    </div>
+  </section>
+  <section id="pv">
+    <div class="pv-image">
+      <img src="images/pv.jpeg" alt="Values and Principles Image" class="pv-img">
+      <!-- Replace with your image path -->
+    </div>
+    <div class="pv-text">
+      <ol>
+        <li>
+          Integrity: We uphold the highest standards of honesty and transparency in all our interactions and
+          deliverables,
+          fostering trust with clients and team members.
+        </li>
+        <li>
+          Collaboration: We believe in the power of teamwork. By working together, sharing knowledge, and supporting
+          each other,
+          we can achieve greater results and drive innovation.
+        </li>
+        <li>
+          Customer-Centric Approach: Our clients are at the heart of everything we do.
+          We strive to understand their needs and deliver tailored solutions that exceed expectations.
+        </li>
+        <li>
+          Continuous Learning: We are committed to personal and professional growth.
+          By staying current with the latest technologies and industry trends, we ensure our skills and services
+          remain
+          relevant and valuable.
+        </li>
+        <li>
+          Innovation: We embrace creativity and encourage new ideas.
+          Our focus is on developing innovative solutions that solve real-world problems and drive business success.
+        </li>
+        <li>
+          Quality: We take pride in delivering high-quality work.
+          Our commitment to excellence ensures that every project meets the highest standards of performance and
+          reliability.
+        </li>
+        <li>
+          Sustainability: We are dedicated to promoting sustainable practices within our projects.
+          We aim to create technology solutions that benefit not only our clients but also the environment and society
+          as a whole.
+        </li>
+        <li>
+          Respect and Inclusion: We foster an inclusive culture where diversity is celebrated.
+          We respect different perspectives and experiences, understanding that they contribute to our collective
+          strength and creativity.
+        </li>
+      </ol>
+      <p>
+        By adhering to these principles and values,
+        Tech Savants aims to create a positive impact in the technology landscape while driving success for our
+        clients
+        and community.</p>
+    </div>
+  </section>
+  <section id="CTA">
+    <div class="CTA-image">
+      <img src="images/CTA.jpeg" alt="Call to Action Image" class="CTA-img">
+      <!-- Replace with your image path -->
+    </div>
+    <div class="CTA-text">
+      <p>Join us as we work together to harness the power of technology for good, transforming challenges into
+        opportunities for growth and improvement.</p>
+      <p><strong>For Businesses:</strong> Reach out today to discuss how our tailored IT solutions can drive growth
+        and efficiency for your organization.</p>
+      <p><strong>For Individuals:</strong> If you’re interested in joining our mission or collaborating on a project,
+        we would love to hear from you!</p>
+      <p><strong>Contact Us Now:</strong></p>
+      <div class="contact-info">
+        <a href="mailto:n01620885@humber.ca">
+          <img src="images/email-icon.png" alt="EmailIcon" class="contact-icon">
+        </a>
+        <a href="tel:+14376654303">
+          <img src="images/phone-icon.png" alt="Phone Icon" class="contact-icon">
+        </a>
+      </div>
+      <p>Together, we can harness the power of technology to create impactful solutions that make a difference. Don’t
+        wait—let’s start building the future today!</p>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2024 Tech Savants. All rights reserved.</p>
+  </footer>
+  <script>
+    // Get all sections
+    const sections = document.querySelectorAll('section');
+
+    // Function to check if a section is in the viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    // Function to add 'visible' class to sections in viewport
+    function handleScroll() {
+      sections.forEach(section => {
+        if (isInViewport(section)) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Initial check in case sections are already in the viewport
+    handleScroll();
+  </script>
+</body>
+
+</html>

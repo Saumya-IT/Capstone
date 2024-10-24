@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Our Team</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        /* Styling for fade-in elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* Class that will be added when element is in view */
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section {
+            background-color: white;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: black;
+        }
+
+        /* Team Members Styles */
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1200px;
+            justify-content: space-around;
+        }
+
+        .team-member {
+            flex: 0 1 calc(20% - 20px);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .team-member-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .contact-icons {
+            margin-top: 10px;
+        }
+
+        .contact-icons img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .team-member {
+                flex: 0 1 calc(45% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .team-member {
+                flex: 0 1 calc(100% - 20px);
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create an IntersectionObserver to detect when elements come into view
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show'); // Add 'show' class when in view
+                        observer.unobserve(entry.target); // Unobserve after it has been shown
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjusts how much of the element needs to be in view (0.1 means 10%)
+            });
+
+            // Apply the observer to all elements with the 'fade-in' class
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Typewriter effect function
+            function typeWriter(element, text, delay, loop) {
+                let index = 0;
+                function type() {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, delay); // Reduced delay for faster typing
+                    } else {
+                        setTimeout(() => erase(), delay * 2); // Pause before erasing
+                    }
+                }
+
+                function erase() {
+                    // Clear the text instantly
+                    element.textContent = '';
+                    index = 0; // Reset index
+                    setTimeout(() => type(), delay * 2); // Pause before typing again
+                }
+
+                type();
+            }
+
+            // Initialize typewriter effect
+            const taglineElement = document.querySelector('.tagline');
+            const taglineText = "Innovating solutions for a smarter tomorrow through teamwork and technology.";
+            typeWriter(taglineElement, taglineText, 50, true); // Set a faster delay (50 ms)
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="images/T_logo.png" alt="Tech Savants Logo" class="logo">
+            </div>
+            <div class="header-center">
+                <h1 class="gradient-text">Tech Savants</h1>
+                <p class="tagline" style="font-size: 0.9rem; color: #ecf0f1; margin-top: 5px;"></p>
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="Team.html" class="nav-link">Team</a></li>
+                        <li><a href="skills.html" class="nav-link">Skills & Expertise</a></li>
+                        <li><a href="projects.html" class="nav-link">Projects</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="meet-our-team">
+        <h2>Meet Our Team</h2>
+        <div class="team-section" id="team-section"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tech Savants. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const teamMembers = [
+            {
+                name: "Saumya Joshi",
+                role: "Team Leader",
+                contact: "+1(437) 665-4303",
+                email: "N01620885@humber.ca",
+                linkedIn: "https://www.linkedin.com/in/n01620885",
+                image: "images/saumya.jpg"
+            },
+            {
+                name: "Kavya Gali",
+                role: "Team Member",
+                contact: "+1(647) 377-1383",
+                email: "kavyagali2000@gmail.com",
+                linkedIn: "http://www.linkedin.com/in/kavya-gali-118216283",
+                image: "images/kavya.jpg"
+            },
+            {
+                name: "Glen Correia",
+                role: "Team Member",
+                contact: "+1(437) 663-8816",
+                email: "glencorreia36@gmail.com",
+                linkedIn: "https://www.linkedin.com/in/glen-correia-568802179",
+                image: "images/glen.jpg"
+            },
+            {
+                name: "Haolin Zhong",
+                role: "Team Member",
+                contact: "+1(647) 469-8311",
+                email: "zhonghl1220@126.com",
+                linkedIn: "https://www.linkedin.com/in/haolin-zhong-7b821730a/",
+                image: "images/haolin.jpg"
+            }
+        ];
+
+        const teamSection = document.getElementById('team-section');
+
+        teamMembers.forEach((member, index) => {
+            const memberCard = document.createElement('div');
+            memberCard.classList.add('team-member');
+            memberCard.style.animationDelay = `${index * 0.3}s`; // Stagger the animation
+            memberCard.innerHTML = `
+                <img src="${member.image}" alt="${member.name}" class="team-member-image">
+                <h3>${member.name}</h3>
+                <p><strong>Role:</strong> ${member.role}</p>
+                <div class="contact-icons">
+                    <a href="tel:${member.contact}">
+                        <img src="images/phone-icon.png" alt="Phone">
+                    </a>
+                    <a href="mailto:${member.email}">
+                        <img src="images/email-icon.png" alt="Email">
+                    </a>
+                    <a href="${member.linkedIn}">
+                        <img src="images/linkedin-logo.jpeg" alt="LinkedIn">
+                    </a>
+                </div>
+            `;
+            teamSection.appendChild(memberCard);
+        });
+    </script>
+</body>
+
+</html>

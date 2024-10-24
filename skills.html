@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills & Expertise</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styling for fade-in elements */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* Class that will be added when element is in view */
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skills-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            /* Set desired width for skill cards */
+        }
+
+        .skill.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .skill img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            /* Space between icon and text */
+        }
+
+        @media (max-width: 600px) {
+            .skills-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill {
+                width: 120px;
+                /* Adjust for smaller screens */
+            }
+        }
+
+        /* Additional styling for the container */
+        .skills-container {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .skills-container.visible {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create an IntersectionObserver to detect when elements come into view
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show'); // Add 'show' class when in view
+                        observer.unobserve(entry.target); // Unobserve after it has been shown
+                    }
+                });
+            }, {
+                threshold: 0.1 // Adjusts how much of the element needs to be in view (0.1 means 10%)
+            });
+
+            // Apply the observer to all elements with the 'fade-in' class
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Typewriter effect function
+            function typeWriter(element, text, delay, loop) {
+                let index = 0;
+                function type() {
+                    if (index < text.length) {
+                        element.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, delay); // Reduced delay for faster typing
+                    } else {
+                        setTimeout(() => erase(), delay * 2); // Pause before erasing
+                    }
+                }
+
+                function erase() {
+                    // Clear the text instantly
+                    element.textContent = '';
+                    index = 0; // Reset index
+                    setTimeout(() => type(), delay * 2); // Pause before typing again
+                }
+
+                type();
+            }
+
+            // Initialize typewriter effect
+            const taglineElement = document.querySelector('.tagline');
+            const taglineText = "Innovating solutions for a smarter tomorrow through teamwork and technology.";
+            typeWriter(taglineElement, taglineText, 50, true); // Set a faster delay (50 ms)
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-left">
+                <img src="images/T_logo.png" alt="Tech Savants Logo" class="logo">
+            </div>
+            <div class="header-center">
+                <h1 class="gradient-text">Tech Savants</h1>
+                <p class="tagline" style="font-size: 0.9rem; color: #ecf0f1; margin-top: 5px;"></p>
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="Team.html" class="nav-link">Team</a></li>
+                        <li><a href="skills.html" class="nav-link">Skills & Expertise</a></li>
+                        <li><a href="projects.html" class="nav-link">Projects</a></li>
+                        <li><a href="services.html" class="nav-link">Services</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="skills-container" id="skillsContainer">
+            <!-- Dynamic Skills Content Will Be Injected Here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tech Savants. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const skillsData = {
+            "Programming Languages": [
+                { "name": "C", "img": "images/c.png" },
+                { "name": "C++", "img": "images/c++.png" },
+                { "name": "Java", "img": "images/java-icon.png" },
+                { "name": "Python", "img": "images/python-icon.png" },
+                { "name": "PHP", "img": "images/php-icon.png" },
+                { "name": "Oracle APEX", "img": "images/oracle-apex.jpeg" },
+                { "name": "Node.js", "img": "images/nodejs-icon.png" },
+                { "name": "JSON", "img": "images/json.png" },
+                { "name": "XML", "img": "images/xml.png" },
+                { "name": "SQL", "img": "images/sql.png" },
+                { "name": "HTML", "img": "images/html.png" },
+                { "name": "CSS", "img": "images/css.png" },
+                { "name": "JavaScript", "img": "images/javascript-icon.png" },
+                { "name": "PL/SQL", "img": "images/plsql.jpeg" },
+                { "name": "C#", "img": "images/Csharp.png" }
+            ],
+            "Frameworks & Libraries": [
+                { "name": "React.js", "img": "images/reactjs.png" },
+                { "name": "Spring Framework & Spring Boot", "img": "images/spring-icon.png" },
+                { "name": "Django", "img": "images/django.png" }
+            ],
+            "Data Analysis Tools": [
+                { "name": "Kaggle", "img": "images/kaggle.png" },
+                { "name": "Jupyter", "img": "images/jupyter.png" }
+            ],
+            "Cloud Apps": [
+                { "name": "AWS", "img": "images/aws.png" },
+                { "name": "Azure", "img": "images/azure.png" },
+                { "name": "Docker", "img": "images/docker.png" },
+                { "name": "Kubernetes", "img": "images/kubernetes.png" },
+                { "name": "Jenkins", "img": "images/jenkins.png" }
+            ],
+            "Design Tools": [
+                { "name": "Figma", "img": "images/figma.png" },
+                { "name": "Adobe Creative Suite", "img": "images/adobe.jpeg" }
+            ],
+            "Project Management": [
+                { "name": "Microsoft Project", "img": "images/project.jpeg" },
+                { "name": "ITIL", "img": "images/itil.jpeg" }
+            ],
+            "Agile Methodologies": [
+                { "name": "Scrum", "img": "images/scrum.png" },
+                { "name": "Kanban", "img": "images/kanban.png" }
+            ],
+            "Collaboration Tools": [
+                { "name": "Jira", "img": "images/jira.png" },
+                { "name": "Trello", "img": "images/trello.png" },
+                { "name": "Git", "img": "images/git.png" }
+            ],
+            "Operating Systems": [
+                { "name": "Linux", "img": "images/linux.png" },
+                { "name": "Windows", "img": "images/windows.png" }
+            ],
+            "Mobile Development": [
+                { "name": "Android Studio", "img": "images/android.jpeg" },
+                { "name": "JSP", "img": "images/jsp.png" }
+            ],
+            "Other Skills": [
+                { "name": "Shell Scripting", "img": "images/script.png" },
+                { "name": "REST APIs", "img": "images/restapi.png" },
+                { "name": "OOP", "img": "images/oop.png" },
+                { "name": "Data Structures", "img": "images/ds.png" }
+            ]
+        };
+
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            for (const category in skillsData) {
+                const categoryDiv = document.createElement('div');
+                const heading = document.createElement('h3');
+                heading.textContent = category;
+                categoryDiv.appendChild(heading);
+
+                const skillsSection = document.createElement('div');
+                skillsSection.className = 'skills-section';
+
+                skillsData[category].forEach(skill => {
+                    const skillDiv = document.createElement('div');
+                    skillDiv.className = 'skill';
+                    skillDiv.innerHTML = `<img src="${skill.img}" alt="${skill.name}"><span>${skill.name}</span>`;
+                    skillsSection.appendChild(skillDiv);
+                });
+
+                categoryDiv.appendChild(skillsSection);
+                container.appendChild(categoryDiv);
+            }
+            fadeInSkills();
+        }
+
+        function fadeInSkills() {
+            const skills = document.querySelectorAll('.skill');
+            skills.forEach((skill, index) => {
+                setTimeout(() => {
+                    skill.classList.add('visible');
+                }, index * 100);
+            });
+
+            const container = document.getElementById('skillsContainer');
+            container.classList.add('visible');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderSkills);
+    </script>
+</body>
+
+</html>

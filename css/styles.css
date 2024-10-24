@@ -1,0 +1,187 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+section {
+  padding: 2rem;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+}
+
+/* Header Styles */
+header {
+  background-color: black;
+  color: white;
+  padding: 1rem 0;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-left {
+  flex: 0 0 auto;
+  /* Keep logo size fixed */
+}
+
+.logo {
+  max-width: 180px;
+  height: auto;
+}
+
+.gradient-text {
+  font-size: 2.5rem;
+  /* Adjust the size as needed */
+  background: linear-gradient(90deg, blue, orange);
+  /* Change these colors for your gradient */
+  -webkit-background-clip: text;
+  /* For WebKit browsers */
+  -webkit-text-fill-color: transparent;
+  /* For WebKit browsers */
+  background-clip: text;
+  /* Standard property for browsers that support it */
+  color: transparent;
+  /* Fallback color */
+  text-align: center;
+  /* Center the text */
+}
+
+/* Optional: Fallback for non-supporting browsers */
+.gradient-text::after {
+  content: attr(data-fallback);
+  /* Show fallback text */
+  color: blue;
+  /* Set fallback text color */
+  position: absolute;
+  /* Position it below the gradient text */
+  visibility: hidden;
+  /* Hide it initially */
+}
+
+.gradient-text[data-fallback]:hover::after {
+  visibility: visible;
+  /* Show fallback on hover */
+}
+
+
+.header-center {
+  display: flexbox;
+  flex-direction: column;
+  flex: auto;
+  margin-left: auto;
+  margin-right: 180px;
+  text-align: center;
+
+}
+
+.header-center p {
+  color: white;
+}
+
+.header-title {
+  margin-bottom: 20px;
+  font-size: 40px;
+  /* Adjust font size for title */
+}
+
+.header-nav {
+  margin-top: 0.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  /* Default link color */
+  padding: 10px 15px;
+  /* Add padding for better click area */
+}
+
+.nav-link:hover {
+  background-color: lightgrey;
+  /* Highlight on hover */
+}
+
+.nav-link.active {
+  color: white;
+  /* Color for the active link */
+  font-weight: bold;
+  /* Make it bold */
+  text-decoration: underline;
+  /* Underline for the active link */
+}
+
+.header-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-nav ul li {
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+.header-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.header-nav ul li a:hover {
+  color: #3498db;
+}
+
+/* Footer Styles */
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

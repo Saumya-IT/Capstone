@@ -1,0 +1,12 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "start": "index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
