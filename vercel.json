@@ -1,5 +1,9 @@
 {
     "version": 2,
     "builds": [],
-    "public": "./"
+    "routes": [
+        {
+            "handle": "filesystem"
+        }
+    ]
 }
